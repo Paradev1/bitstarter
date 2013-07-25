@@ -2,12 +2,15 @@ var express = require('express');
 
 var app = express.createServer(express.logger());
 
-fs = require("fs");
-buf = require("buf");
+fs = require('fs');
+buf = new Buffer(256);
 
-var infile = "index.html"
-var in =fs.readFileSync(infile);
-var html = buf.toString(in);
+var infile = 'index.html';
+var in1 = fs.readFileSync(infile);
+
+var buf = new Buffer(in1,'utf-8');
+
+var html = buf.toString();
 
 app.get('/', function(request, response) {
   response.send(html);
